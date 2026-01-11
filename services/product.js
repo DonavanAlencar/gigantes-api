@@ -1,5 +1,5 @@
 const cache = require('./cache');
-const { wpClient, getWcAuthHeader } = require('./http');
+const { wpClient, getWcAuthHeader, getLdAuthHeader } = require('./http');
 const config = require('../config');
 
 const CACHE_TTL = 3600; // 1 hour
@@ -54,14 +54,22 @@ const getProduct = async (id) => {
                 // Check cache for individual course first? 
                 // Report says: sistemagigantes:bff:product:{id} caches everything.
                 // We'll just fetch.
-                const courseRes = await wpClient.get(`/ldlms/v2/sfwd-courses/${courseId}`);
+                const courseRes = await wpClient.get(`/ldlms/v2/sfwd-courses/${courseId}`, {
+                    headers: {
+                        Authorization: getLdAuthHeader()
+                    }
+                });
                 return {
                     id: courseRes.data.id,
                     title: courseRes.data.title && courseRes.data.title.rendered,
                     link: courseRes.data.link
                 };
             } catch (err) {
-                return { id: courseId, error: 'Failed to load course data' };
+                if (err.response && err.response.status === 404) {
+                    return { id: courseId, error: 'Course not found (404)' };
+                }
+                console.error(`Failed to fetch course ${courseId}:`, err.message);
+                return { id: courseId, error: err.message || 'Failed to load course data' };
             }
         }));
 

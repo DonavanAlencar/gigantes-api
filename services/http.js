@@ -8,7 +8,7 @@ const httpsAgent = new https.Agent({ keepAlive: true });
 
 const wpClient = axios.create({
     baseURL: config.wordpress.url,
-    timeout: 5000, // 5 seconds default timeout
+    timeout: 15000, // 15 seconds default timeout
     httpAgent,
     httpsAgent,
     headers: {
