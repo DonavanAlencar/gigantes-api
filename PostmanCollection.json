@@ -1,0 +1,1084 @@
+{
+    "info": {
+        "_postman_id": "wordpress-bff-analysis-2026",
+        "name": "WordPress BFF - Sistemagigantes.com",
+        "description": "Coleção de endpoints identificados na análise técnica para implementação do BFF Node.js\n\n**Base URL:** https://sistemagigantes.com\n**Data da Análise:** 11 de Janeiro de 2026",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "item": [
+                {
+                    "name": "WordPress Health Check (Recomendado)",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/wp-json/bff/v1/health",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "wp-json",
+                                "bff",
+                                "v1",
+                                "health"
+                            ]
+                        },
+                        "description": "Endpoint customizado recomendado para health check do BFF. **NOTA:** Este endpoint precisa ser criado no WordPress primeiro."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "WordPress REST API Index",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/wp-json/wp/v2",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "wp-json",
+                                "wp",
+                                "v2"
+                            ]
+                        },
+                        "description": "Endpoint base da REST API do WordPress. **ATENÇÃO:** Atualmente retorna 404 - precisa investigar."
+                    },
+                    "response": []
+                }
+            ],
+            "description": "Endpoints para verificação de saúde do sistema"
+        },
+        {
+            "name": "LearnDash REST API",
+            "item": [
+                {
+                    "name": "Cursos",
+                    "item": [
+                        {
+                            "name": "Listar Cursos",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/sfwd-courses",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "sfwd-courses"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "per_page",
+                                            "value": "10",
+                                            "description": "Número de resultados por página"
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "1",
+                                            "description": "Página atual"
+                                        }
+                                    ]
+                                },
+                                "description": "Lista todos os cursos disponíveis no LearnDash"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Curso por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/sfwd-courses/{{course_id}}",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "sfwd-courses",
+                                        "{{course_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de um curso específico pelo ID"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Cursos do Usuário",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/users-courses",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "users-courses"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "user",
+                                            "value": "{{user_id}}",
+                                            "description": "ID do usuário"
+                                        }
+                                    ]
+                                },
+                                "description": "Lista os cursos de um usuário específico"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Progresso do Curso",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/users-course-progress_v2",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "users-course-progress_v2"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "user",
+                                            "value": "{{user_id}}",
+                                            "description": "ID do usuário"
+                                        },
+                                        {
+                                            "key": "course",
+                                            "value": "{{course_id}}",
+                                            "description": "ID do curso"
+                                        }
+                                    ]
+                                },
+                                "description": "Obtém o progresso de um usuário em um curso específico"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Usuários do Curso",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/courses-users_v2",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "courses-users_v2"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "course",
+                                            "value": "{{course_id}}",
+                                            "description": "ID do curso"
+                                        }
+                                    ]
+                                },
+                                "description": "Lista os usuários inscritos em um curso específico"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Lições",
+                    "item": [
+                        {
+                            "name": "Listar Lições",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/sfwd-lessons",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "sfwd-lessons"
+                                    ]
+                                },
+                                "description": "Lista todas as lições disponíveis"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Lição por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/sfwd-lessons/{{lesson_id}}",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "sfwd-lessons",
+                                        "{{lesson_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de uma lição específica"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Usuários",
+                    "item": [
+                        {
+                            "name": "Listar Usuários",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/users",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "users"
+                                    ]
+                                },
+                                "description": "Lista todos os usuários do sistema"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Usuário por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/users/{{user_id}}",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "users",
+                                        "{{user_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de um usuário específico"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Quizzes",
+                    "item": [
+                        {
+                            "name": "Listar Quizzes",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/sfwd-quiz",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "sfwd-quiz"
+                                    ]
+                                },
+                                "description": "Lista todos os quizzes disponíveis"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Estatísticas de Quiz",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Basic {{auth_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/ldlms/v2/quizzes-statistics_v2",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "ldlms",
+                                        "v2",
+                                        "quizzes-statistics_v2"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "quiz",
+                                            "value": "{{quiz_id}}",
+                                            "description": "ID do quiz"
+                                        },
+                                        {
+                                            "key": "user",
+                                            "value": "{{user_id}}",
+                                            "description": "ID do usuário"
+                                        }
+                                    ]
+                                },
+                                "description": "Obtém estatísticas de um quiz específico"
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ],
+            "description": "Endpoints da REST API do LearnDash (Habilitada)"
+        },
+        {
+            "name": "WooCommerce REST API",
+            "item": [
+                {
+                    "name": "Produtos",
+                    "item": [
+                        {
+                            "name": "Listar Produtos",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/wc/v3/products",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "wc",
+                                        "v3",
+                                        "products"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "per_page",
+                                            "value": "10",
+                                            "description": "Número de resultados por página"
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "1",
+                                            "description": "Página atual"
+                                        }
+                                    ]
+                                },
+                                "description": "Lista todos os produtos. **NOTA:** WooCommerce REST API está desabilitado - precisa habilitar primeiro.",
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": {
+                                        "username": "{{consumer_key}}",
+                                        "password": "{{consumer_secret}}"
+                                    }
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Produto por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/wc/v3/products/{{product_id}}",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "wc",
+                                        "v3",
+                                        "products",
+                                        "{{product_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de um produto específico",
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": {
+                                        "username": "{{consumer_key}}",
+                                        "password": "{{consumer_secret}}"
+                                    }
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Pedidos",
+                    "item": [
+                        {
+                            "name": "Listar Pedidos",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/wc/v3/orders",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "wc",
+                                        "v3",
+                                        "orders"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "customer",
+                                            "value": "{{user_id}}",
+                                            "description": "ID do cliente",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": "10"
+                                        }
+                                    ]
+                                },
+                                "description": "Lista todos os pedidos. Pode filtrar por cliente.",
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": {
+                                        "username": "{{consumer_key}}",
+                                        "password": "{{consumer_secret}}"
+                                    }
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Pedido por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/wc/v3/orders/{{order_id}}",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "wc",
+                                        "v3",
+                                        "orders",
+                                        "{{order_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de um pedido específico",
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": {
+                                        "username": "{{consumer_key}}",
+                                        "password": "{{consumer_secret}}"
+                                    }
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Assinaturas",
+                    "item": [
+                        {
+                            "name": "Listar Assinaturas",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/wc/v3/subscriptions",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "wc",
+                                        "v3",
+                                        "subscriptions"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "customer",
+                                            "value": "{{user_id}}",
+                                            "description": "ID do cliente"
+                                        }
+                                    ]
+                                },
+                                "description": "Lista as assinaturas. **NOTA:** Endpoint pode variar dependendo do plugin de assinaturas usado.",
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": {
+                                        "username": "{{consumer_key}}",
+                                        "password": "{{consumer_secret}}"
+                                    }
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Assinatura por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/wp-json/wc/v3/subscriptions/{{subscription_id}}",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "wp-json",
+                                        "wc",
+                                        "v3",
+                                        "subscriptions",
+                                        "{{subscription_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de uma assinatura específica",
+                                "auth": {
+                                    "type": "basic",
+                                    "basic": {
+                                        "username": "{{consumer_key}}",
+                                        "password": "{{consumer_secret}}"
+                                    }
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ],
+            "description": "Endpoints da REST API do WooCommerce. **ATENÇÃO:** API está desabilitada - habilitar em WooCommerce > Settings > Advanced > REST API"
+        },
+        {
+            "name": "BFF Recomendados",
+            "item": [
+                {
+                    "name": "Produtos",
+                    "item": [
+                        {
+                            "name": "Listar Produtos",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/products",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "per_page",
+                                            "value": "10"
+                                        },
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        }
+                                    ]
+                                },
+                                "description": "Endpoint recomendado para o BFF Node.js - Lista produtos com cache Redis"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Produto por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/products/{{product_id}}",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product_id}}"
+                                    ]
+                                },
+                                "description": "Obtém produto específico com relacionamentos (cursos)"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Cursos do Produto",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/products/{{product_id}}/courses",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product_id}}",
+                                        "courses"
+                                    ]
+                                },
+                                "description": "Lista os cursos relacionados a um produto"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Cursos",
+                    "item": [
+                        {
+                            "name": "Listar Cursos",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/courses",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "courses"
+                                    ]
+                                },
+                                "description": "Lista cursos com cache otimizado"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Obter Curso por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/courses/{{course_id}}",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "courses",
+                                        "{{course_id}}"
+                                    ]
+                                },
+                                "description": "Obtém curso específico com metadados"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Produtos do Curso",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/courses/{{course_id}}/products",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "courses",
+                                        "{{course_id}}",
+                                        "products"
+                                    ]
+                                },
+                                "description": "Lista produtos que dão acesso a um curso"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Usuários do Curso",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/courses/{{course_id}}/users",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "courses",
+                                        "{{course_id}}",
+                                        "users"
+                                    ]
+                                },
+                                "description": "Lista usuários inscritos no curso"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Usuários",
+                    "item": [
+                        {
+                            "name": "Cursos do Usuário",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{user_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/users/{{user_id}}/courses",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "users",
+                                        "{{user_id}}",
+                                        "courses"
+                                    ]
+                                },
+                                "description": "Lista cursos do usuário com progresso"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Progresso do Usuário",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{user_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/users/{{user_id}}/progress",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "users",
+                                        "{{user_id}}",
+                                        "progress"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "course_id",
+                                            "value": "{{course_id}}",
+                                            "description": "Filtrar por curso específico",
+                                            "disabled": true
+                                        }
+                                    ]
+                                },
+                                "description": "Obtém progresso do usuário nos cursos"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Assinaturas do Usuário",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{user_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/users/{{user_id}}/subscriptions",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "users",
+                                        "{{user_id}}",
+                                        "subscriptions"
+                                    ]
+                                },
+                                "description": "Lista assinaturas ativas do usuário"
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Pedidos do Usuário",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{user_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/users/{{user_id}}/orders",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "users",
+                                        "{{user_id}}",
+                                        "orders"
+                                    ]
+                                },
+                                "description": "Lista pedidos do usuário"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Pedidos",
+                    "item": [
+                        {
+                            "name": "Obter Pedido por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{user_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/orders/{{order_id}}",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{order_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de um pedido"
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Assinaturas",
+                    "item": [
+                        {
+                            "name": "Obter Assinatura por ID",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer {{user_token}}",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{bff_base_url}}/api/subscriptions/{{subscription_id}}",
+                                    "host": [
+                                        "{{bff_base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "subscriptions",
+                                        "{{subscription_id}}"
+                                    ]
+                                },
+                                "description": "Obtém detalhes de uma assinatura"
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ],
+            "description": "Endpoints recomendados para implementação no BFF Node.js. Estes endpoints ainda não existem - são sugestões baseadas na análise técnica."
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "https://sistemagigantes.com",
+            "type": "string"
+        },
+        {
+            "key": "bff_base_url",
+            "value": "http://localhost:3000",
+            "type": "string",
+            "description": "URL base do BFF Node.js (ajustar quando implementado)"
+        },
+        {
+            "key": "auth_token",
+            "value": "",
+            "type": "string",
+            "description": "Token de autenticação Base64 (username:application_password)"
+        },
+        {
+            "key": "wc_auth_token",
+            "value": "",
+            "type": "string",
+            "description": "Token WooCommerce REST API (Consumer Key:Consumer Secret em Base64)"
+        },
+        {
+            "key": "user_token",
+            "value": "",
+            "type": "string",
+            "description": "JWT ou Bearer token para autenticação no BFF"
+        },
+        {
+            "key": "user_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "key": "course_id",
+            "value": "2553",
+            "type": "string",
+            "description": "ID de exemplo de curso encontrado na análise"
+        },
+        {
+            "key": "product_id",
+            "value": "496",
+            "type": "string",
+            "description": "ID de exemplo de produto encontrado na análise"
+        },
+        {
+            "key": "order_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "key": "subscription_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "key": "lesson_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "key": "quiz_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "key": "consumer_key",
+            "value": "ck_32e01b90b47f81a07968426daff7dfd41afa9d47",
+            "type": "string"
+        },
+        {
+            "key": "consumer_secret",
+            "value": "cs_74d374e54c46a079bc15305d1ccd9ceb162f9a57",
+            "type": "string"
+        }
+    ]
+}

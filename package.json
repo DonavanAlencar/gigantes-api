@@ -1,0 +1,22 @@
+{
+    "name": "sistema-gigantes-bff",
+    "version": "1.0.0",
+    "description": "BFF API Gateway for Sistema Gigantes",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node --watch server.js"
+    },
+    "dependencies": {
+        "@fastify/rate-limit": "^10.3.0",
+        "axios": "^1.6.0",
+        "dotenv": "^16.3.0",
+        "fastify": "^5.6.2",
+        "fastify-plugin": "^4.5.0",
+        "http-status-codes": "^2.3.0",
+        "ioredis": "^5.3.0",
+        "mysql2": "^3.6.0",
+        "pino": "^8.16.0",
+        "pino-pretty": "^10.2.0"
+    }
+}
