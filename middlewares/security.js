@@ -27,14 +27,10 @@ module.exports = fp(async (fastify, opts) => {
     // Ideally, fastify configuration in server.js should handle redaction, 
     // but we can add a preSerialization hook to double check responses.
 
-    fastify.addHook('preSerialization', async (request, reply, payload) => {
-        return redact(payload);
-    });
+    // Register pino-native logging hooks if not already handled by fastify default logger
+    // Fastify's default logger handles redaction via configuration, unnecessary to hook preSerialization
+    // which modifies the actual response body sent to the client.
 
     // Example Auth Middleware (Placeholder)
-    fastify.decorate('authenticate', async (request, reply) => {
-        // Implement authentication logic here (e.g. JWT check)
-        // For now, allow everything or basic check
-        // request.user = ...
-    });
+    // Auth Decorator removed (handled by middlewares/auth.js)
 });

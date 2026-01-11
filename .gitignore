@@ -114,3 +114,4 @@ dist
 
 # Project specific
 server.log
+package-lock.json
