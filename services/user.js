@@ -7,9 +7,16 @@ const getUserDashboard = async (id) => {
     const cacheKey = `sistemagigantes:bff:user:${id}:dashboard`;
     const redis = cache.getClient();
 
-    const cached = await redis.get(cacheKey);
-    if (cached) {
-        return JSON.parse(cached);
+    try {
+        const cached = await redis.get(cacheKey);
+        if (cached) {
+            return JSON.parse(cached);
+        }
+    } catch (err) {
+        // Silently fail cache read, continue to fetch
+        if (process.env.USE_MOCKS !== 'true') {
+            console.warn('Cache read failed, continuing without cache:', err.message);
+        }
     }
 
     try {
@@ -94,7 +101,14 @@ const getUserDashboard = async (id) => {
         }
 
         // Cache the result
-        await redis.set(cacheKey, JSON.stringify(dashboard), 'EX', CACHE_TTL);
+        try {
+            await redis.set(cacheKey, JSON.stringify(dashboard), 'EX', CACHE_TTL);
+        } catch (err) {
+            // Silently fail cache write, continue
+            if (process.env.USE_MOCKS !== 'true') {
+                console.warn('Cache write failed:', err.message);
+            }
+        }
 
         return dashboard;
     } catch (error) {

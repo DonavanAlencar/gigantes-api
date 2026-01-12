@@ -18,12 +18,18 @@ const startServer = async () => {
     });
 
     // Register Rate Limit
-    await server.register(require('@fastify/rate-limit'), {
+    const rateLimitConfig = {
         global: false, // We'll apply it manually or specifically if needed, or global: 'true' with defaults
         max: 100,
         timeWindow: '1 minute',
-        redis: cache.getClient(), // Use our Redis instance
-    });
+    };
+    
+    // Only use Redis if not in mock mode
+    if (process.env.USE_MOCKS !== 'true') {
+        rateLimitConfig.redis = cache.getClient();
+    }
+    
+    await server.register(require('@fastify/rate-limit'), rateLimitConfig);
 
     // Register Security Middleware
     await server.register(securityMiddleware);

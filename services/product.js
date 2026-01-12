@@ -9,9 +9,16 @@ const getProduct = async (id) => {
     const redis = cache.getClient();
 
     // Cache Aside
-    const cached = await redis.get(cacheKey);
-    if (cached) {
-        return JSON.parse(cached);
+    try {
+        const cached = await redis.get(cacheKey);
+        if (cached) {
+            return JSON.parse(cached);
+        }
+    } catch (err) {
+        // Silently fail cache read, continue to fetch
+        if (process.env.USE_MOCKS !== 'true') {
+            console.warn('Cache read failed, continuing without cache:', err.message);
+        }
     }
 
     try {
@@ -87,7 +94,14 @@ const getProduct = async (id) => {
         };
 
         // Save to Redis
-        await redis.set(cacheKey, JSON.stringify(response), 'EX', CACHE_TTL);
+        try {
+            await redis.set(cacheKey, JSON.stringify(response), 'EX', CACHE_TTL);
+        } catch (err) {
+            // Silently fail cache write, continue
+            if (process.env.USE_MOCKS !== 'true') {
+                console.warn('Cache write failed:', err.message);
+            }
+        }
 
         return response;
 

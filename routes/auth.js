@@ -1,9 +1,20 @@
 const axios = require('axios');
 const config = require('../config');
+const { createMockAdapter } = require('../services/http');
 
 // We use a separate Axios instance or simple axios call to VALIDATE creds
 // because generic wpClient might use system creds. 
 // Here we want to test USER provided creds.
+
+// Create axios instance for auth validation
+const authAxios = axios.create({
+    timeout: 5000
+});
+
+// Apply mock adapter if in mock mode
+if (process.env.USE_MOCKS === 'true' && createMockAdapter) {
+    authAxios.defaults.adapter = createMockAdapter();
+}
 
 async function authRoutes(fastify, options) {
     fastify.post('/api/auth/login', {
@@ -40,12 +51,11 @@ async function authRoutes(fastify, options) {
 
         try {
             // Attempt to fetch current user ("me") using provided credentials
-            const validationRes = await axios.get(`${config.wordpress.url}/wp/v2/users/me`, {
+            const validationRes = await authAxios.get(`${config.wordpress.url}/wp/v2/users/me`, {
                 auth: {
                     username: username,
                     password: password
-                },
-                timeout: 5000
+                }
             });
 
             const user = validationRes.data;

@@ -16,15 +16,25 @@ const wpClient = axios.create({
     },
 });
 
-// Mock Adapter Implementation
-if (process.env.USE_MOCKS === 'true') {
+// Mock Adapter Function
+const createMockAdapter = () => {
     const fs = require('fs');
     const path = require('path');
-    console.log('⚠️  USING MOCKS FOR EXTERNAL HTTP CALLS ⚠️');
-
-    wpClient.defaults.adapter = async (config) => {
+    
+    return async (config) => {
         return new Promise((resolve, reject) => {
-            const url = config.url || '';
+            let url = config.url || '';
+            
+            // Extract path from full URL if needed (e.g., "http://mock.local/wp/v2/users/me" -> "/wp/v2/users/me")
+            try {
+                const urlObj = new URL(url, 'http://dummy');
+                url = urlObj.pathname + urlObj.search;
+            } catch (e) {
+                // If URL parsing fails, assume it's already a path
+                // Remove leading protocol/host if present
+                url = url.replace(/^https?:\/\/[^\/]+/, '');
+            }
+            
             let mockFile = '';
 
             // Generic Router
@@ -135,6 +145,12 @@ if (process.env.USE_MOCKS === 'true') {
             }
         });
     };
+};
+
+// Mock Adapter Implementation
+if (process.env.USE_MOCKS === 'true') {
+    console.log('⚠️  USING MOCKS FOR EXTERNAL HTTP CALLS ⚠️');
+    wpClient.defaults.adapter = createMockAdapter();
 }
 
 // Helper for Basic Auth (WooCommerce)
@@ -152,5 +168,6 @@ const getLdAuthHeader = () => {
 module.exports = {
     wpClient,
     getWcAuthHeader,
-    getLdAuthHeader
+    getLdAuthHeader,
+    createMockAdapter
 };

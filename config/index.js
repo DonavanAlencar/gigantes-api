@@ -15,7 +15,7 @@ const config = {
         url: process.env.REDIS_URL,
     },
     wordpress: {
-        url: process.env.WP_API_URL,
+        url: process.env.USE_MOCKS === 'true' ? (process.env.WP_API_URL || 'http://mock.local') : process.env.WP_API_URL,
         wcConsumerKey: process.env.WC_CONSUMER_KEY,
         wcConsumerSecret: process.env.WC_CONSUMER_SECRET,
         ldUser: process.env.LD_API_USER,
