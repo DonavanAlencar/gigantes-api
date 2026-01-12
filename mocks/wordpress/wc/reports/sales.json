@@ -1,0 +1,20 @@
+[
+    {
+        "total_sales": "1500.00",
+        "net_sales": "1500.00",
+        "average_sales": "150.00",
+        "total_orders": 10,
+        "total_items": 10,
+        "total_tax": "0.00",
+        "total_shipping": "0.00",
+        "total_refunds": 0,
+        "total_discount": 0,
+        "totals_grouped_by": "day",
+        "totals": {
+            "2024-01-01": {
+                "sales": "150.00",
+                "orders": 1
+            }
+        }
+    }
+]

@@ -39,7 +39,11 @@ const getProduct = async (id) => {
             // Example: i:2553;
             const matches = relatedCourseMeta.value.match(/i:(\d+);/g);
             if (matches) {
-                relatedCourses = matches.map(m => parseInt(m.match(/i:(\d+);/)[1]));
+                // PHP Serialized array: i:0;i:2553;i:1;i:2327;
+                // Matches will be: ["i:0;", "i:2553;", "i:1;", "i:2327;"]
+                // We want the values (odd indices), not the keys (even indices).
+                const allInts = matches.map(m => parseInt(m.match(/i:(\d+);/)[1]));
+                relatedCourses = allInts.filter((_, index) => index % 2 !== 0);
             }
         } else if (relatedCourseMeta && Array.isArray(relatedCourseMeta.value)) {
             // Sometimes API returns it deserialized (less likely for this plugin)

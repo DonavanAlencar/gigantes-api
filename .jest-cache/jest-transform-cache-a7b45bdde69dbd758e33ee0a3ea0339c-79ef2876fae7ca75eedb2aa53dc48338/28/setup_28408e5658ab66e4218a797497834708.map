@@ -1,0 +1,1 @@
+{"version":3,"names":["process","env","USE_MOCKS","NODE_ENV"],"sources":["setup.js"],"sourcesContent":["// Force Use Mocks for all tests\nprocess.env.USE_MOCKS = 'true';\nprocess.env.NODE_ENV = 'test';\n"],"mappings":"AAAA;AACAA,OAAO,CAACC,GAAG,CAACC,SAAS,GAAG,MAAM;AAC9BF,OAAO,CAACC,GAAG,CAACE,QAAQ,GAAG,MAAM","ignoreList":[]}

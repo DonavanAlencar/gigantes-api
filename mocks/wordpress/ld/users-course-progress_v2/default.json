@@ -1,0 +1,12 @@
+{
+    "code": "success",
+    "message": "Progress retrieved",
+    "course_progress": {
+        "course_id": 2553,
+        "user_id": 1,
+        "status": "in_progress",
+        "percentage": 20,
+        "completed_steps": 2,
+        "total_steps": 10
+    }
+}

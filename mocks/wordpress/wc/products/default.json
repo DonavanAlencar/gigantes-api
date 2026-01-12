@@ -1,0 +1,82 @@
+{
+    "id": 2553,
+    "name": "Curso Exemplo de Desenvolvimento",
+    "slug": "curso-exemplo-dev",
+    "permalink": "https://example.com/product/curso-exemplo-dev/",
+    "date_created": "2023-01-01T12:00:00",
+    "type": "simple",
+    "status": "publish",
+    "featured": false,
+    "catalog_visibility": "visible",
+    "description": "<p>Descrição do produto curso.</p>",
+    "short_description": "<p>Resumo do produto.</p>",
+    "sku": "CURSO-DEV-001",
+    "price": "199.90",
+    "regular_price": "299.90",
+    "sale_price": "199.90",
+    "on_sale": true,
+    "purchasable": true,
+    "total_sales": 150,
+    "virtual": true,
+    "downloadable": false,
+    "external_url": "",
+    "button_text": "",
+    "tax_status": "taxable",
+    "tax_class": "",
+    "manage_stock": false,
+    "stock_quantity": null,
+    "stock_status": "instock",
+    "backorders": "no",
+    "low_stock_amount": null,
+    "sold_individually": false,
+    "weight": "",
+    "dimensions": {
+        "length": "",
+        "width": "",
+        "height": ""
+    },
+    "shipping_required": false,
+    "shipping_taxable": false,
+    "shipping_class": "",
+    "shipping_class_id": 0,
+    "reviews_allowed": true,
+    "average_rating": "5.00",
+    "rating_count": 10,
+    "related_ids": [
+        2327,
+        2324
+    ],
+    "upsell_ids": [],
+    "cross_sell_ids": [],
+    "parent_id": 0,
+    "purchase_note": "",
+    "categories": [
+        {
+            "id": 15,
+            "name": "Cursos",
+            "slug": "cursos"
+        }
+    ],
+    "tags": [],
+    "images": [
+        {
+            "id": 2554,
+            "date_created": "2023-01-01T12:00:00",
+            "src": "https://example.com/wp-content/uploads/2023/01/curso.jpg",
+            "name": "Capa do Curso",
+            "alt": ""
+        }
+    ],
+    "attributes": [],
+    "default_attributes": [],
+    "variations": [],
+    "grouped_products": [],
+    "menu_order": 0,
+    "meta_data": [
+        {
+            "id": 12345,
+            "key": "_related_course",
+            "value": "a:2:{i:0;i:101;i:1;i:102;}"
+        }
+    ]
+}

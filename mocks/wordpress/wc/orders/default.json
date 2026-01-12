@@ -1,0 +1,26 @@
+{
+  "id": 101,
+  "status": "processing",
+  "currency": "BRL",
+  "date_created": "2024-01-10T09:00:00",
+  "total": "99.90",
+  "customer_id": 1,
+  "billing": {
+    "first_name": "João",
+    "last_name": "Silva",
+    "email": "joao@example.com"
+  },
+  "shipping": {
+    "first_name": "João",
+    "last_name": "Silva"
+  },
+  "line_items": [
+    {
+      "id": 11,
+      "name": "Curso JS",
+      "product_id": 2553,
+      "quantity": 1,
+      "total": "99.90"
+    }
+  ]
+}

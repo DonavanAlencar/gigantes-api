@@ -1,0 +1,16 @@
+[
+    {
+        "id": 201,
+        "date": "2024-01-01T12:00:00",
+        "slug": "licao-1",
+        "status": "publish",
+        "type": "sfwd-lessons",
+        "title": {
+            "rendered": "Lição 1: Introdução"
+        },
+        "content": {
+            "rendered": "<p>Conteúdo da lição.</p>"
+        },
+        "course": 2553
+    }
+]

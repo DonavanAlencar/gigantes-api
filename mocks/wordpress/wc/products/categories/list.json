@@ -1,0 +1,13 @@
+[
+    {
+        "id": 15,
+        "name": "Cursos",
+        "slug": "cursos",
+        "parent": 0,
+        "description": "Categoria de cursos",
+        "display": "default",
+        "image": null,
+        "menu_order": 0,
+        "count": 5
+    }
+]

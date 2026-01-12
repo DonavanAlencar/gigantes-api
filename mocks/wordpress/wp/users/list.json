@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Marcelo Takashi",
+        "url": "",
+        "description": "",
+        "link": "https://sistemagigantes.com/author/marcelo/",
+        "slug": "marcelo",
+        "avatar_urls": {
+            "24": "https://secure.gravatar.com/avatar/...?s=24",
+            "48": "https://secure.gravatar.com/avatar/...?s=48",
+            "96": "https://secure.gravatar.com/avatar/...?s=96"
+        },
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https://sistemagigantes.com/wp-json/wp/v2/users/1"
+                }
+            ]
+        }
+    }
+]

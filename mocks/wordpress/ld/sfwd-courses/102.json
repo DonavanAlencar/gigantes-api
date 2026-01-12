@@ -1,0 +1,21 @@
+{
+    "id": 102,
+    "date": "2023-01-15T10:00:00",
+    "modified": "2023-01-16T11:00:00",
+    "slug": "js-avancado",
+    "status": "publish",
+    "type": "sfwd-courses",
+    "link": "https://example.com/courses/js-avancado/",
+    "title": {
+        "rendered": "JavaScript Avançado"
+    },
+    "content": {
+        "rendered": "<p>Conteúdo avançado...</p>",
+        "protected": false
+    },
+    "excerpt": {
+        "rendered": "<p>Resumo do curso avançado...</p>",
+        "protected": false
+    },
+    "lesson_count": 15
+}

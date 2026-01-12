@@ -1,0 +1,15 @@
+[
+    {
+        "id": 1,
+        "date_created": "2024-01-01T10:00:00",
+        "email": "joao@example.com",
+        "first_name": "João",
+        "last_name": "Silva",
+        "username": "joaosilva",
+        "role": "customer",
+        "billing": {
+            "first_name": "João",
+            "email": "joao@example.com"
+        }
+    }
+]

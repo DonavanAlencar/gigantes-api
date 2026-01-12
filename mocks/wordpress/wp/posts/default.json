@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "date": "2024-01-01T12:00:00",
+  "slug": "hello-world",
+  "status": "publish",
+  "type": "post",
+  "link": "https://sistemagigantes.com/hello-world/",
+  "title": {
+    "rendered": "Hello World"
+  },
+  "content": {
+    "rendered": "<p>Welcome to WordPress.</p>"
+  },
+  "excerpt": {
+    "rendered": "<p>Welcome to WordPress.</p>"
+  },
+  "author": 1
+}

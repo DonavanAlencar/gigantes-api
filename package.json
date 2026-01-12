@@ -5,7 +5,9 @@
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
-        "dev": "node --watch server.js"
+        "dev": "node --watch server.js",
+        "dev:mock": "USE_MOCKS=true node --watch server.js",
+        "test": "jest"
     },
     "dependencies": {
         "@fastify/jwt": "^10.0.0",
@@ -21,5 +23,8 @@
         "mysql2": "^3.6.0",
         "pino": "^8.16.0",
         "pino-pretty": "^10.2.0"
+    },
+    "devDependencies": {
+        "jest": "^29.7.0"
     }
 }
